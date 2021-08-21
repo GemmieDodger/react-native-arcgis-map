@@ -8,15 +8,15 @@
 
 // import React from 'react';
 // import type {Node} from 'react';
-// import {
-//   SafeAreaView,
-//   ScrollView,
-//   StatusBar,
-//   StyleSheet,
-//   Text,
-//   useColorScheme,
-//   View,
-// } from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
 // import EsriMap from './src/EsriMap';
 // import {
 //   Colors,
@@ -113,17 +113,34 @@
 import * as React from 'react';
 import { WebView } from 'react-native-webview';
 import { Constants } from 'expo';
+import GenerateMap from './src/GenerateMap'
 
-export default class App extends React.Component {
-  render() {
+export default function App() {
+  const title = "Canal Map"
+  const blurb = "Take a look at the services on the canal and nearest train stations"
     return (
       // this takes you to the actual arcgis site - not the map on its own
       //source={{uri: 'https://developers.arcgis.com/javascript/latest/sample-code/intro-mapview/live/index.html'}}
-      <WebView
-        source={{uri: 'https://arcg.is/1zrbyG'}}
-        style={{marginTop: 20, height: 50}}
-      />);
-  }
+     <>
+     <SafeAreaView>
+     <View>
+        <Text>
+        {title}
+        </Text>
+        <Text>
+          {blurb}
+        </Text>
+      </View>
+      <View style={{ flex: 1 }, styles.mapContainer}>
+          <GenerateMap/>
+        </View>
+        </SafeAreaView>
+        </>
+        );
 }
 
-// export default App;
+const styles = StyleSheet.create({
+  mapContainer: {
+    height: '80%',
+  },
+});
